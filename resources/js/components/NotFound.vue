@@ -173,17 +173,12 @@
 
         methods:{
             getProfilePhoto(){
-                var vowelsCount = '';
-                if (this.form.photo>200){
-                    vowelsCount = this.form.photo
-                }else{
-                    vowelsCount= "img/profile/"+ this.form.photo ;
-                }
-                //let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
-                return vowelsCount;
+                let vphoto = this.form.photo;
+                let photo = (vphoto > 200) ? vphoto : "/img/profile/"+ vphoto ;
+                return photo;
             },
 
-            updateInfo(){ 
+            updateInfo(){
                 this.$Progress.start();
                 if(this.form.password == ''){
                     this.form.password = undefined;
@@ -201,7 +196,7 @@
             updateProfile(e){
                 let file = e.target.files[0];
                 let reader = new FileReader();
-                let limit = 1024 * 1024 * 2;
+                /*let limit = 1024 * 1024 * 2;
                 if(file['size'] > limit){
                     swal({
                         type: 'error',
@@ -209,7 +204,7 @@
                         text: 'You are uploading a large file',
                     })
                     return false;
-                }
+                }*/
 
                 reader.onloadend = (file) => {
                     this.form.photo = reader.result;

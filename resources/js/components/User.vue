@@ -69,6 +69,7 @@
               </div>
               <form @submit.prevent="editmode ? updateUser() : createUser()">
                 <div class="modal-body">
+                    {{this.$cookie.get('id')}}
                     <div class="form-group">
                       <input v-model="form.name" type="text" name="name"
                         placeholder="Name"
@@ -128,6 +129,7 @@
       data() {
             return {
                 editmode: false,
+                test: '',
                 users : {},
                 form: new Form({
                     id:'',
@@ -150,6 +152,7 @@
             updateUser(){
                 this.$Progress.start();
                 console.log('Editing data ' + this.form.id);
+                this.form.id = this.$cookie.get('id');
                 this.form.put('api/user/'+this.form.id)
                 .then(() => {
                     // success
@@ -169,6 +172,7 @@
 
            editModal(user){
                 this.editmode = true;
+                this.$cookie.set('id',user.id);
                 this.form.reset();
                 $('#addNew').modal('show');
                 this.form.fill(user);

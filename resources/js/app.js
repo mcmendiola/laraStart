@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+var VueCookie = require('vue-cookie');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform'
 
@@ -33,10 +34,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 
+
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/users', component: require('./components/User.vue').default },
-    { path: '/profile', component: require('./components/Profile.vue').default }
+    { path: '/profile', component: require('./components/Profile.vue').default },
+    { path: '/test', component: require('./components/test.vue').default },
+    { path: '*', component: require('./components/NotFound.vue') }
   ]
 
 
@@ -68,8 +72,11 @@ Vue.filter('myDate',function(created){
 
 window.Fire =  new Vue();
 
-   
-  
+Vue.use(VueCookie);   
+
+
+
+
  
 /**
  * The following block of code may be used to automatically register your
@@ -90,8 +97,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+var app = new Vue({
     el: '#app', 
-    router
+    router,
+    data: {
+      attributeA: 'valueA',
+      attributeB: 'valueB',
+      attributeC: ''
+    }
+    
 });
- 
+
+app.attributeC = Vue.cookie.set('id', '0', 1)
