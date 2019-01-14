@@ -12,40 +12,48 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover">
-                  <tbody>
-                    <!-- /table header -->
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Type</th>
-                      <th>Registered At</th>
-                    </tr>
-
-                    <!-- /table Details -->
-                    <tr v-for="user in users.data" :key="user.id">
-
-                        <td>{{user.id}}</td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.type | upText}}</td>
-                        <td>{{user.created_at | myDate}}</td>
-
-                        <!-- /table Details Action-->
-                        <td>
-                            <a href="#" @click="editModal(user)">
-                                <i class="fa fa-edit blue"></i>
-                            </a>
-                            /
-                            <a href="#" @click="deleteUser(user.id)">
-                                <i class="fa fa-trash red"></i>
-                            </a>
-
-                        </td>
-                      </tr>
+                <table class="table table-hover" id="example">
                   
-                </tbody></table>
+                    <!-- /table header -->
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Registered At</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                      <!-- /table Details -->
+                      <tr v-for="user in users.data" :key="user.id">
+                          <td>{{user.id}}</td>
+                          <td>{{user.name}}</td>
+                          <td>{{user.email}}</td>
+                          <td>{{user.type | upText}}</td>
+                          <td>{{user.created_at | myDate}}</td>
+
+                          <!-- /table Details Action-->
+                          <td>
+                              <a href="#" @click="editModal(user)">
+                                  <i class="fa fa-edit blue"></i>
+                              </a>
+                              /
+                              <a href="#" @click="deleteUser(user.id)">
+                                  <i class="fa fa-trash red"></i>
+                              </a>
+                              /
+                              <a href="#" @click="printPreview(user.id)">
+                                  <i class="fas fa-print yellow"></i>
+                              </a>
+
+                          </td>
+                        </tr>
+                  
+                      </tbody>
+                    </table>
               </div>
               <!-- /.card-body -->
             </div>
@@ -121,6 +129,26 @@
           </div>
         </div>
 
+        <!-- report window Modal -->
+        <div class="modal" tabindex="-1" role="dialog" id="report" data-toggle="modal" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="width: 740px !important;">
+                <div class="modal-header">
+                    <h5 class="modal-title">Report title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" frameborder="0" width="704" height="440" id="pdfFrame"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -177,6 +205,22 @@
                 $('#addNew').modal('show');
                 this.form.fill(user);
             },
+            printPreview(id){
+                this.$Progress.start();
+                var myDate = new Date().valueOf()
+               
+                axios.get("api/showreportRpt/jrpt/"+ id +"/" + myDate)
+                .then(({ data }) =>  {
+                        //alert(data);
+                        $('#pdfFrame').attr('src', data);
+                        $('#report').modal({backdrop: 'static', keyboard: false})  
+                        $('#report').modal('show');
+                        this.$Progress.finish();
+                    })
+                    .catch(() => {
+                    this.$Progress.fail();
+                    });
+            },
             deleteUser(id){ 
                 swal({
                     title: 'Are you sure?',
@@ -225,7 +269,12 @@
             }
         },
       created() {
+          
+          
+
+          
           this.LoadUsers();
+          
          // setInterval(() => this.LoadUsers(),3000);
       }
     }

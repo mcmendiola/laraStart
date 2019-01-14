@@ -40,7 +40,9 @@ let routes = [
     { path: '/users', component: require('./components/User.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/test', component: require('./components/test.vue').default },
-    { path: '*', component: require('./components/NotFound.vue') }
+    { path: '/sqltest', component: require('./components/SQLTest.vue').default },
+    { path: '/showreport', component: require('./components/ReportTest.vue').default }
+    
   ]
 
 
@@ -73,7 +75,6 @@ Vue.filter('myDate',function(created){
 window.Fire =  new Vue();
 
 Vue.use(VueCookie);   
-
 
 
 

@@ -112,6 +112,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
+          <!-- SQL TEST -->
+          <li class="nav-item">
+            <router-link to="/sqltest" class="nav-link">
+              <i class="nav-icon fas fa-user red"></i>
+              <p>
+                SQL TEST
+              </p>
+            </router-link>
+          </li>
+          <!-- Report TEST -->
+          <li class="nav-item">
+            <router-link to="/showreport" class="nav-link">
+              <i class="nav-icon fas fa-user red"></i>
+              <p>
+                Report TEST
+              </p>
+            </router-link>
+          </li>
           <!-- Logout -->
           <li class="nav-item">
 
@@ -160,5 +178,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 <script src="/js/app.js"></script>
+<script src="{{ asset('js/ViewerJS/') }}" ></script>
+<script>
+          
+</script>
+
 </body>
 </html>
