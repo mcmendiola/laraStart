@@ -10,12 +10,21 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@babel/cli": "^7.2.3",
+        "@babel/preset-env": "^7.2.3",
         "axios": "^0.18.0",
+        "babel-helper-vue-jsx-merge-props": "^2.0.3",
+        "babel-plugin-jsx-v-model": "^2.0.3",
+        "babel-plugin-lodash": "^3.3.4",
+        "babel-plugin-syntax-jsx": "^6.18.0",
+        "babel-plugin-transform-vue-jsx": "^3.7.0",
+        "babel-plugin-vue-jsx-sync": "0.0.5",
+        "babel-preset-env": "^1.7.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.11",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
@@ -30,7 +39,9 @@
         "sweetalert2": "^7.33.1",
         "vform": "^1.0.0",
         "vue-cookie": "^1.1.4",
+        "vue-data-tables": "^3.4.4",
         "vue-progressbar": "^0.7.5",
-        "vue-router": "^3.0.2"
+        "vue-router": "^3.0.2",
+        "vue2-datatable-component": "^2.3.1"
     }
 }

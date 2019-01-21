@@ -41,7 +41,8 @@ let routes = [
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/test', component: require('./components/test.vue').default },
     { path: '/sqltest', component: require('./components/SQLTest.vue').default },
-    { path: '/showreport', component: require('./components/ReportTest.vue').default }
+    { path: '/showreport', component: require('./components/ReportTest.vue').default },
+    { path: '/masterlist', component: require('./components/Masterlist.vue').default }
     
   ]
 
@@ -77,6 +78,31 @@ window.Fire =  new Vue();
 Vue.use(VueCookie);   
 
 
+//import Datatable from 'vue2-datatable-component'
+//Vue.use(Datatable) // done!
+
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+
+// set language to EN
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+
+locale.use(lang)
+
+
+
+// import DataTables and DataTablesServer separately
+import { DataTables, DataTablesServer } from 'vue-data-tables'
+Vue.use(DataTables)
+Vue.use(DataTablesServer)
+
+// import DataTables and DataTablesServer together
+import VueDataTables from 'vue-data-tables'
+Vue.use(VueDataTables)
+
 
  
 /**
@@ -110,3 +136,6 @@ var app = new Vue({
 });
 
 app.attributeC = Vue.cookie.set('id', '0', 1)
+
+
+

@@ -25,9 +25,10 @@ Route::get('dBInfo', 'API\SqlTestController@getDBInfo');
 Route::apiResources(['showreport' => 'API\ReportController']);
 
 Route::get('/showreportRpt/jrpt/{id}/{vdtime}', 'API\ReportController@jrpt');
+Route::apiResources(['masterlist' => 'API\MasterlistController']);
 
 /*Route::middleware('auth:api')->get('/sqltest', function () {
-    $name = DB::Connection()->getDatabaseName();
+    $name = DB::Connection()->getDatabaseName();  
     return 'Connected to ' .$name;
 });*/
 
