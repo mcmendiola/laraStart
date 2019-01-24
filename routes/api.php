@@ -26,6 +26,7 @@ Route::apiResources(['showreport' => 'API\ReportController']);
 
 Route::get('/showreportRpt/jrpt/{id}/{vdtime}', 'API\ReportController@jrpt');
 Route::apiResources(['masterlist' => 'API\MasterlistController']);
+Route::apiResources(['dropdownlist' => 'API\DropdownListController']);
 
 /*Route::middleware('auth:api')->get('/sqltest', function () {
     $name = DB::Connection()->getDatabaseName();  

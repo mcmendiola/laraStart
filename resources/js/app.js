@@ -42,7 +42,8 @@ let routes = [
     { path: '/test', component: require('./components/test.vue').default },
     { path: '/sqltest', component: require('./components/SQLTest.vue').default },
     { path: '/showreport', component: require('./components/ReportTest.vue').default },
-    { path: '/masterlist', component: require('./components/Masterlist.vue').default }
+    { path: '/masterlist', component: require('./components/Masterlist.vue').default },
+    { path: '/dropdownlist', component: require('./components/DropdownList.vue').default }
     
   ]
 
